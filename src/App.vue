@@ -1,5 +1,6 @@
 <template>
   <h1>TodoList application</h1>
+  <AddForm />
   <hr>
   <TodoList
     v-bind:todos="todos" 
@@ -9,6 +10,8 @@
 
 <script>
 import TodoList from './components/TodoList.vue';
+import AddForm from './components/AddForm.vue';
+
 export default {
   name: 'App',
   data() {
@@ -21,7 +24,8 @@ export default {
     }
   },
   components: {
-    TodoList
+    TodoList,
+    AddForm
   },
   methods: {
     removeTodo(id){
@@ -32,12 +36,12 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+  }
 </style>
