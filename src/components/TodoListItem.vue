@@ -3,7 +3,7 @@
         <span v-bind:class="{done: todo.completed}">
             <input type="checkbox" 
                 v-on:change="todo.completed = !todo.completed">
-            <strong>{{ todo.id }}</strong>
+            <strong>{{ index + 1 }}</strong>
             {{ todo.title }}
         </span>
         <button class="rm" 
@@ -18,6 +18,9 @@
             todo: {
                 type: Object,
                 required: true
+            },
+            index: {
+                type: Number
             }
         }
     }

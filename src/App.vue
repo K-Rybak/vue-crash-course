@@ -1,6 +1,8 @@
 <template>
   <h1>TodoList application</h1>
-  <AddForm />
+  <AddForm 
+    @add-todo="addTodo"
+  />
   <hr>
   <TodoList
     v-bind:todos="todos" 
@@ -30,6 +32,9 @@ export default {
   methods: {
     removeTodo(id){
       this.todos = this.todos.filter(x => x.id !== id)
+    },
+    addTodo(todo) {
+      this.todos.push(todo)
     }
   }
 }
