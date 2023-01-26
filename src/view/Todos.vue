@@ -3,29 +3,42 @@
     <router-link to="/">Home</router-link>
     <AddForm @add-todo="addTodo" />
     <hr>
-    <TodoList v-bind:todos="todos" @remove-item="removeTodo" />
+    <Loader v-if="loading" />
+    <TodoList 
+        v-else-if="todos.length"
+        v-bind:todos="todos" 
+        @remove-item="removeTodo"
+    />
+    <p v-else>No element</p>
 </template>
 
 <script>
 import TodoList from '@/components/TodoList.vue';
 import AddForm from '@/components/AddForm.vue';
+import Loader from '@/components/Loader.vue';
 
 export default {
     name: 'app',
     data() {
         return {
-        todos: []
+            todos: [],
+            loading: true
         }
     },
     components: {
         TodoList,
-        AddForm
+        AddForm,
+        Loader
     },
     mounted() {
         fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
         .then(response => response.json())
         .then(json => {
-            this.todos = json
+            setTimeout(() => {
+                this.todos = json;
+                this.loading = false;
+            }, 1000)
+
         })
     },
     methods: {
